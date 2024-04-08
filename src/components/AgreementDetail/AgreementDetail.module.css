@@ -1,0 +1,7 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-right: auto;
+  max-width: 900px;
+  gap: 1rem;
+}

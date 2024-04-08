@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: .5rem;
+}
+.root label {
+  white-space: nowrap;
+}
+
+.root *:nth-child(2) {
+  flex: 1;
+}
