@@ -1,23 +1,26 @@
 import Text from "../Inputs/Text";
 import { FormProvider, useForm } from "react-hook-form";
-import { MOCK_DATA } from "./MOCK_DATA";
+import { MOCK_DATA } from "../../MOCK_DATA";
 import styles from "./AgreementDetail.module.css";
 import Date from "../Inputs/Date";
 import Select from "../Inputs/Select";
 import Number from "../Inputs/Number";
 import Check from "../Inputs/Check";
-import { Button, Divider } from "antd";
-import { IoIosJournal } from "react-icons/io";
+import { Divider } from "antd";
+// import { IoIosJournal } from "react-icons/io";
 import Items from "../Items/Items";
 
-export const AgreementDetail = () => {
+export const AgreementDetail: React.FC<{
+  agreementNumber: string;
+}> = ({ agreementNumber }) => {
   const form = useForm({
-    defaultValues: MOCK_DATA,
+    defaultValues: MOCK_DATA.find(
+      (agreement) => agreement.agreementNumber === agreementNumber,
+    ),
   });
 
   return (
     <FormProvider {...form}>
-      <h1>Agreement Detail</h1>
       <div className={styles.form}>
         <Text name="agreementNumber" label="Agreement #" />
         <Date name="agreementDate" label="Date" />
@@ -37,9 +40,9 @@ export const AgreementDetail = () => {
         <Check name="paid" label="Paid" />
         <Date name="paidDate" label="Date" />
         <Text name="referenceNumber2" label="Reference #" />
-        <Button htmlType="button" icon={<IoIosJournal />}>
+        {/* <Button htmlType="button" icon={<IoIosJournal />}>
           Get Journals
-        </Button>
+        </Button> */}
 
         <Select
           name="title"

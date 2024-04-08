@@ -16,20 +16,31 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
+const AgreementsLazyImport = createFileRoute('/agreements')()
 const IndexLazyImport = createFileRoute('/')()
+const AgreementAgreementNumberLazyImport = createFileRoute(
+  '/agreement/$agreementNumber',
+)()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const AgreementsLazyRoute = AgreementsLazyImport.update({
+  path: '/agreements',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/agreements.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const AgreementAgreementNumberLazyRoute =
+  AgreementAgreementNumberLazyImport.update({
+    path: '/agreement/$agreementNumber',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./routes/agreement.$agreementNumber.lazy').then((d) => d.Route),
+  )
 
 // Populate the FileRoutesByPath interface
 
@@ -39,8 +50,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
+    '/agreements': {
+      preLoaderRoute: typeof AgreementsLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/agreement/$agreementNumber': {
+      preLoaderRoute: typeof AgreementAgreementNumberLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -48,6 +63,10 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute, AboutLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  AgreementsLazyRoute,
+  AgreementAgreementNumberLazyRoute,
+])
 
 /* prettier-ignore-end */
