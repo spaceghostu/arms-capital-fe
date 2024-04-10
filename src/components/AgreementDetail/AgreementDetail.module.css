@@ -1,7 +1,30 @@
+.root {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+
 .form {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   margin-right: auto;
   max-width: 900px;
   gap: 1rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+}
+
+.toolbar {
+  display: flex;
+  padding-inline: 3rem;
+}
+
+.content {
+  padding-inline: 3rem;
+  max-width: 900px;
+  margin-inline: auto;
 }
