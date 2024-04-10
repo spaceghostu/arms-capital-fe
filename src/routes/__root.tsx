@@ -8,11 +8,10 @@ export const Route = createRootRoute({
     <ConfigProvider
       theme={{
         token: {
-          // Seed Token
           colorPrimary: "#285382",
           borderRadius: 2,
 
-          // Alias Token
+          fontFamily: "Roboto, sans-serif",
         },
       }}
     >
